@@ -1,4 +1,4 @@
-import { expect, describe } from 'vitest'
+import { expect, describe, it } from 'vitest';
 import getCountries from './countries';
 
 describe('Countries API', () => {
@@ -6,4 +6,4 @@ describe('Countries API', () => {
     const countries = await getCountries();
     expect(Array.isArray(countries)).toBe(true);
   });
-})
+});
