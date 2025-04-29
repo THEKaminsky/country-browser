@@ -32,7 +32,7 @@ const CountryDetailModal: React.FC<CountryDetailModalProps> = ({ country, onClos
         </button>
         <div className="flex flex-col items-start justify-space-between">
           <h2 className="text-2xl font-bold pb-4">{(country.name?.common && country.flag) ? `${country.name?.common} ${country.flag}` : 'No common name available'}</h2>
-          <p className="pb-2">Official Name: {country.name?.official ? `${country.name?.official}` : 'No official name available'}</p>
+          <p className="pb-2">Native Official Name: {country.name?.nativeName?.official ? `${country.name?.nativeName?.official}` : 'No native official name available'}</p>
           <p className="pb-2">Subregion: {country.subregion ?? 'No subregion available'}</p>
           <p className="pb-2">Timezones: {country.timezones?.join(', ') ?? 'No timezones available'}</p>
           <p className="pb-2">Currencies: {country.currencies ? Object.values(country.currencies).map(c => c.name).join(', ') : 'No currencies available'}</p>
