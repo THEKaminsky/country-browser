@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import getCountries from '../api/countries';
 import { Country } from '../types/country';
+import CountryCard from './CountryCard';
 
 const CountryList = () => {
   const [countries, setCountries] = useState<Country[]>([]);
@@ -17,7 +18,7 @@ const CountryList = () => {
     <ul>
       {countries.map((country: Country) => (
         <li key={country.name.common}>
-          <span>{country.name.common}</span>
+          <CountryCard country={country} onClick={() => {}} />
         </li>
       ))}
     </ul>
