@@ -22,8 +22,12 @@ const CountryDetailModal: React.FC<CountryDetailModalProps> = ({ country, onClos
     };
   }, [onClose]);
 
+  if (!country) {
+    return null;
+  }
+
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50" onClick={onClose}>
+    <div data-testid="modal-element-test-id" className="fixed inset-0 flex items-center justify-center bg-black/50 z-50" onClick={onClose}>
       <div ref={modalRef} className="bg-white rounded-lg shadow-lg w-3/4 md:w-1/2 lg:w-1/3 p-6" onClick={(e) => e.stopPropagation()}>
         <button className="float-right text-gray-500 hover:text-black" onClick={onClose}>
           Close X
