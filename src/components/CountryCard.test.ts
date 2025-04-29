@@ -9,7 +9,10 @@ const mockCountry: Partial<Country> = {
   name: {
     common: 'Test Country',
     official: '',
-    nativeName: {}
+    nativeName: {
+      official: '',
+      common: ''
+    }
   },
   flag: '🇺🇸',
 };

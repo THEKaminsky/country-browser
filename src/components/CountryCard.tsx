@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Country } from '../types/country';
 
 interface CountryCardProps {
@@ -6,10 +5,9 @@ interface CountryCardProps {
     onClick: () => void;
 }
 
-const CountryCard = ({ country }: CountryCardProps) => {
-    const [isOpen, setIsOpen] = useState(false);
+const CountryCard = ({ country, onClick }: CountryCardProps) => {
     return (
-        <div className="mt-4 p-2 border border-gray-200 rounded-md shadow-sm hover:bg-gray-100" onClick={() => setIsOpen(!isOpen)}>
+        <div className="mt-4 p-2 border border-gray-200 rounded-md shadow-sm hover:bg-gray-100" onClick={onClick}>
             <h2>{country.name?.common} {country.flag}</h2>
         </div>
     );

@@ -9,16 +9,19 @@ import CountryDetailModal from './CountryDetailModal'; // Adjust path as necessa
 const mockCountryDetails: Partial<Country> = {
   name: {
     common: 'Test Country',
+    official: 'Test Country Official',
     nativeName: {
-      common: 'Test Native Name',
-      official: 'Testland',
+      official: 'Test Native Name Official',
+      common: 'Test Native Name Common',
     },
   },
+  capital: ['Test Capital'],
+  population: 1000000,
   flag: '🇺🇸',
   subregion: 'Test Subregion',
   timezones: ['UTC+1', 'UTC+2'],
   currencies: {
-    TST: { name: 'Test Dollar' },
+    TST: { name: 'Test Dollar', symbol: '$' },
   },
   languages: {
     eng: 'English',
@@ -28,14 +31,19 @@ const mockCountryDetails: Partial<Country> = {
 };
 
 describe('CountryDetailModal Component', () => {
+  const props = {
+    country: mockCountryDetails,
+    onClose: () => {},
+  };
+
   it('should render detailed country information correctly', () => {
-    render(React.createElement(CountryDetailModal {country={mockCountryDetails}}));
+    render(React.createElement(CountryDetailModal, {...props}));
 
     expect(screen.getByText(/Test Country/i)).toBeInTheDocument();
-    expect(screen.getByText(/Testland/i)).toBeInTheDocument();
+    expect(screen.getByText(/Test Native Name/i)).toBeInTheDocument();
     expect(screen.getByText(/Test Capital/i)).toBeInTheDocument();
     expect(screen.getByText(/Population:/i)).toBeInTheDocument();
-    expect(screen.getByText(/1,000,000/i)).toBeInTheDocument(); // Adjust format if necessary
+    expect(screen.getByText(/1,000,000/i)).toBeInTheDocument();
     expect(screen.getByText(/🇺🇸/i)).toBeInTheDocument();
     expect(screen.getByText(/Test Subregion/i)).toBeInTheDocument();
     expect(screen.getByText(/UTC\+1/i)).toBeInTheDocument();
@@ -48,14 +56,14 @@ describe('CountryDetailModal Component', () => {
   });
 
   it('should not render when isOpen is false', () => {
-    render(<CountryDetailModal country={mockCountryDetails} isOpen={false} />);
-    
+    render(React.createElement(CountryDetailModal, {...props}));
+
     expect(screen.queryByText(/Test Country/i)).not.toBeInTheDocument();
   });
 
   it('should close the modal when the close button is clicked', () => {
-    render(<CountryDetailModal country={mockCountryDetails} isOpen={true} />);
-    const closeButton = screen.getByText('Close');
+    render(React.createElement(CountryDetailModal, {...props}));
+    const closeButton = screen.getByRole('button', { name: /close/i });
     fireEvent.click(closeButton);
     expect(screen.queryByText(/Test Country/i)).not.toBeInTheDocument();
   });
