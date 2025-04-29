@@ -10,11 +10,13 @@ const mockCountry: Partial<Country> = {
     common: 'Test Country',
     official: '',
     nativeName: {
-      official: '',
-      common: ''
-    }
+      eng: {
+        official: '',
+        common: ''
+      }
+    },
   },
-  flag: '🇺🇸',
+  flag: '🇺🇸', 
   subregion: 'Test Subregion',
   timezones: ['UTC+0'],
   currencies: {
