@@ -31,6 +31,7 @@ const mockCountry: Partial<Country> = {
   borders: ['ABC', 'DEF']
 };
 
+
 describe('CountryCard Component', () => {
   it('should render the country name and flag', () => {
     render(React.createElement(CountryCard, { country: mockCountry as Country, onClick: () => {} }));
