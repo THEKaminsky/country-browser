@@ -6,6 +6,11 @@ interface CountryDetailModalProps {
   onClose: () => void;
 }
 
+type NativeName = {
+  official: string;
+  common: string;
+}
+
 const CountryDetailModal: React.FC<CountryDetailModalProps> = ({ country, onClose }) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -31,13 +36,27 @@ const CountryDetailModal: React.FC<CountryDetailModalProps> = ({ country, onClos
           Close X
         </button>
         <div className="flex flex-col items-start justify-space-between">
-          <h2 className="text-2xl font-bold pb-4">{(country.name?.common && country.flag) ? `${country.name?.common} ${country.flag}` : 'No common name available'}</h2>
-          <p className="pb-2">Native Official Name: {country.name?.nativeName?.official ? `${country.name?.nativeName?.official}` : 'No native official name available'}</p>
-          <p className="pb-2">Subregion: {country.subregion ?? 'No subregion available'}</p>
-          <p className="pb-2">Timezones: {country.timezones?.join(', ') ?? 'No timezones available'}</p>
-          <p className="pb-2">Currencies: {country.currencies ? Object.values(country.currencies).map(c => c.name).join(', ') : 'No currencies available'}</p>
-          <p className="pb-2">Languages: {country.languages ? Object.values(country.languages).join(', ') : 'No languages available'}</p>
-          <p className="pb-2">Borders: {country.borders?.join(', ') ?? 'No borders available'}</p>
+          <h2 className="text-xl md:text-2xl font-bold pb-2 md:pb-4">{(country.name?.common && country.flag) ? `${country.name?.common} ${country.flag}` : 'No common name available'}</h2>
+          <p className="pb-1 md:pb-2 text-sm md:text-base">Official Name: {country.name?.official ? `${country.name?.official}` : 'No native official name available'}</p>
+          <p className="pb-1 md:pb-2 text-sm md:text-base">Subregion: {country.subregion ?? 'No subregion available'}</p>
+          <p className="pb-1 md:pb-2 text-sm md:text-base">Timezones: {country.timezones?.join(', ') ?? 'No timezones available'}</p>
+          <p className="pb-1 md:pb-2 text-sm md:text-base">Currencies: {country.currencies ? Object.values(country.currencies).map(c => c.name).join(', ') : 'No currencies available'}</p>
+          <p className="pb-1 md:pb-2 text-sm md:text-base">Languages: {country.languages ? Object.values(country.languages).join(', ') : 'No languages available'}</p>
+          <p className="pb-1 md:pb-2 text-sm md:text-base">
+              Native Names:{' '}
+              {country.name?.nativeName ? (
+                <ul className="list-disc list-inside">
+                  {Object.entries(country.name.nativeName).map(([lang, nativeName]: [string, NativeName]) => (
+                    <li key={lang}>
+                      {lang}: {nativeName.official ?? 'No official name available'} ({nativeName.common ?? 'No common name available'})
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                'No native names available'
+              )}
+            </p>
+          <p className="pb-1 md:pb-2 text-sm md:text-base">Borders: {country.borders?.join(', ') ?? 'No borders available'}</p>
         </div>
       </div>
     </div>

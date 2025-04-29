@@ -10,8 +10,10 @@ const mockCountryDetails: Partial<Country> = {
     common: 'Test Country',
     official: 'Test Official',
     nativeName: {
-      official: 'Test Native Name Official',
-      common: 'Test Native Name Common',
+      "eng": {
+        official: 'Test Native Name Official',
+        common: 'Test Native Name Common',
+      }
     },
   },
   capital: ['Test Capital'],

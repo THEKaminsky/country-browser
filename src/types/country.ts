@@ -3,8 +3,10 @@ export interface Country {
     common: string;
     official: string;
     nativeName: {
-      official: string;
-      common: string;
+      [key: string]: {
+        official: string;
+        common: string;
+      };
     };
   };
   tld: string[];
