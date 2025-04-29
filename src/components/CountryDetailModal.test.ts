@@ -8,7 +8,7 @@ import CountryDetailModal from './CountryDetailModal';
 const mockCountryDetails: Partial<Country> = {
   name: {
     common: 'Test Country',
-    official: 'Test Country Official',
+    official: 'Test Official',
     nativeName: {
       official: 'Test Native Name Official',
       common: 'Test Native Name Common',
@@ -35,7 +35,7 @@ describe('CountryDetailModal Component', () => {
     render(React.createElement(CountryDetailModal, { country: mockCountryDetails, onClose: onClose }));
 
     expect(screen.getByText(/Test Country/i)).toBeInTheDocument();
-    expect(screen.getByText(/Test Native Name/i)).toBeInTheDocument();
+    expect(screen.getByText(/Test Official/i)).toBeInTheDocument();
     expect(screen.getByText(/🇺🇸/i)).toBeInTheDocument();
     expect(screen.getByText(/Test Subregion/i)).toBeInTheDocument();
     expect(screen.getByText(/UTC\+1/i)).toBeInTheDocument();
