@@ -1,54 +1,32 @@
-# React + TypeScript + Vite
+# Tech Stack
+React + TypeScript + Vite + Vitest + Tailwind CSS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Demo
 
-Currently, two official plugins are available:
+# Installation
+Pretty straight forward, clone the repo and run `npm install` to install all the dependencies. Then run `npm run dev` to start the development server.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Decisions Made
+- I decided to use Vite as the build tool for the project. Vite is a fast and lightweight build tool that provides a lot of features out of the box, such as hot module replacement, code splitting, and more. I will say, however, this was my first time using Vite and that led to a few challenges that caused this to take a bit longer than I anticipated. Jest doesn't not play nice with Vite, so I had to use Vitest instead. This was a bit of a pain, but I was able to get it working eventually.
+- React for the frontend.
+- Tailwind CSS for styling.
+- TypeScript for type checking and type safety.
+- As requested, I worked with TDD (Test Driven Development) to ensure that the application is working as expected and covered. Build a test, it fails, build to pass. As you get further into the project, I can start to get more challenging to follow that process when all you see is the whole picture and not individual stories.
 
-## Expanding the ESLint configuration
+# Requirements Provided
+## Browsing Countries
+As a curious person, I want to scroll through a list of countries, so that I can see what’s out there.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Fetch and display a paginated or infinite-scrolling list of countries.
+Each country should show at least its name, flag, population, region, and capital.
+## Country Details View
+As a user, I want to click on a country, so that I can see more information about it.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Display detailed info such as native name, subregion, timezones, currencies, languages, and borders.
+Implement a back button to return to the country list.
+## Responsive Design
+As a person on the go, I want the UI to adapt to my device, so that it’s always easy to use.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+# Optionals
+I decided to go with the infinite-scrolling approach, so I didn’t have to worry about pagination. Seeing as this is a PoC/MVP, I tend to put forth the simplest solution that works. However, if I were to build a more robust application, I would definitely consider pagination. Same goes for the favoriting system. I have built out tables/lists with favoriting functionality, but this was about a simpler MVP and proof of concept/understanding.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
